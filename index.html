@@ -511,7 +511,7 @@ const mouse = new THREE.Vector2();
                 previousTouchY =  event.touches[0].clientY ;
                     
                     
-             leftbox.innerHTML="Your Movement: " + Math.floor( touchMovement) + " Pixels";
+             leftbox.innerHTML="Finger Movement: " + Math.floor( touchMovement) + " Pixels";
 
                     
                     
@@ -798,13 +798,7 @@ function backgroundchange(){
 }
                 
   
-                
-                function mouseRender(){
-                    
-                }
-                
-                function iPadRender(){}
-                
+           
                 
                 
                 
@@ -812,9 +806,7 @@ function backgroundchange(){
                     
                   //  timer+=0.05;
                     
-                            
-             leftbox.innerHTML="Your Movement: " + Math.floor( mouseamount) + " Pixels";
-
+        
      
                     
                 if(clickAmount>0){clickAmount-=0.1;}
@@ -839,7 +831,7 @@ function backgroundchange(){
         if ( touchAmount  > 2.55 ){        touchAmount -= 2.5; } 
         if ( touchAmount > 1000){  angularSpeed=0.0001;  touchAmount -= 30;  }           
                     
-        if(touchAmount < 1000 && touchAmount>100){ angularSpeed=0.00005; touchAmount -= 30; }
+        if(touchAmount < 1000 && touchAmount>100){ angularSpeed=0.00005; touchAmount -= 20; }
                     
                     
         if ( mouseamount > 1000){                     
@@ -849,7 +841,7 @@ function backgroundchange(){
                     
                     
                     
-                    if(mouseamount < 1000 && mouseamount>100){ //myTween.pause();
+            if(mouseamount < 1000 && mouseamount>100){ //myTween.pause();
                                           
                          mouseamount -= 20;                       
                         
@@ -857,7 +849,7 @@ function backgroundchange(){
                     
                     
                     
-                    if( mouseamount > 3500|| touchAmount> 3500){
+                    if( mouseamount > 3500|| touchAmount> 2500){
                          
                          
                          angularSpeed=0.0001;
@@ -920,7 +912,7 @@ function backgroundchange(){
                      }
                     
                     
-                    if(mouseamount<3499){
+                    if(mouseamount<3499 && touchAmount < 2500 ){
                         
                        
                            timeIndex = generateTimeIndex( today.getHours(),  today.getMinutes());
@@ -964,6 +956,7 @@ function backgroundchange(){
                         
                         angularSpeed=0.00005;                        
                         touchAmount -= 50; 
+                        threeSecondFlag =0;
 
                     }
                     
