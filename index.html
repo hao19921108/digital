@@ -15,7 +15,9 @@
         
         
         
-            <canvas id="c"></canvas>
+           
+        
+    <div class="UI">    
       <div class="row">
   <div id = "leftbox">Mouse Movement: 0 Pixels</div>
   <div id = "middlebox">Hit the Keys: 0</div>
@@ -36,8 +38,8 @@
         
         <div id="beian"><div id='number'>Copyright © 2021-2031 Hao 艺术工作室 &nbsp&nbsp&nbsp&nbsp <a href="https://beian.miit.gov.cn/" target="_blank">沪ICP备2021007958号-1</a></div></div>
         
-        
-        
+        </div>  
+         <canvas id="c"></canvas>
         
 
             <script type="module">
@@ -49,6 +51,7 @@ import {RenderPass} from 'https://threejsfundamentals.org/threejs/resources/thre
 	
 
 
+        var touchScreen = 0; 
  
                            
          var userinformation = document.getElementById('userinformation'); 
@@ -378,6 +381,7 @@ const mouse = new THREE.Vector2();
                 
             function onTouchStart(e){
                 
+                touchScreen =1;
                 
                 pTouchX = previousTouchX =  event.touches[0].clientX  ;
                 pTouchY = previousTouchY =  event.touches[0].clientY ;
@@ -628,16 +632,17 @@ function backgroundchange(){
            
            }
 
-       
-               
-
-
-
-
 
 }
                 
-            
+  
+                
+                function mouseRender(){
+                    
+                }
+                
+                function iPadRender(){}
+                
                 
                 
                 
@@ -664,6 +669,8 @@ function backgroundchange(){
                     
             //      console.log(scene.children.length);  
                     
+                    
+                    
         if ( mouseamount  > 2.55 ){        mouseamount -= 2.5; }    
     
         if ( touchAmount  > 2.55 ){        touchAmount -= 2.5; } 
@@ -687,7 +694,7 @@ function backgroundchange(){
                     
                     
                     
-                    if(mouseamount > 3500){
+                    if(mouseamount > 3500|| touchAmount> 3500){
                          
                          
                          angularSpeed=0.0001;
@@ -749,11 +756,11 @@ function backgroundchange(){
                      }
                     
                     
-                    if(mouseamount<500){
-                        threeSecondFlag=0;
-                    }
                     
-                    if(mouseamount<3500 && mouseamount> 1000){
+                    
+                   
+                    
+                    if(mouseamount<3500 && mouseamount> 1000 ){
                         
                         angularSpeed=0.00001;                        
                         mouseamount -= 50; 
@@ -761,14 +768,16 @@ function backgroundchange(){
                     }
                     
                     
-                    if (mouseamount > 5000){ mouseamount -= 100}
+                    if (mouseamount > 5000){ mouseamount -= 100; threeSecondFlag=1;}
                     if ( mouseamount > 10000){        mouseamount -= 350; }  
                     
                     
                     
-                     if(touchAmount<500){
-                        threeSecondFlag=0;
+                     if(mouseamount<500){
+                        threeSecondFlag = 0;
                     }
+                    
+                
                     
                     if(touchAmount<3500 && touchAmount> 1000){
                         
@@ -777,20 +786,11 @@ function backgroundchange(){
 
                     }
                     
-                     if (touchAmount > 5000){ touchAmount -= 100;}
-
-                     if (mouseamount < 500 &&  touchAmount <500 ){
-                        threeSecondFlag= 0 ;
-                    } 
-    
                     
-                    if (touchAmount > 5000 || mouseamount > 5000 ){
-                        threeSecondFlag=1;
-                    } 
-                    
+                  //  if (touchAmount > 5000){ touchAmount -= 100; threeSecondFlag=1;}
                     if ( touchAmount > 10000){        touchAmount -= 350; }  
                     
-                    if(threeSecondFlag){angularSpeed = 0.0001; backgroundchange();}
+                    if(threeSecondFlag){angularSpeed = 0.0002; backgroundchange();}
                     
                    // p+=0.02;
                 
@@ -834,7 +834,6 @@ function backgroundchange(){
 
                 
              
-                
                  
                 
                 
