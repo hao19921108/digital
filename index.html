@@ -674,9 +674,9 @@ function backgroundchange(){
         if ( mouseamount  > 2.55 ){        mouseamount -= 2.5; }    
     
         if ( touchAmount  > 2.55 ){        touchAmount -= 2.5; } 
-        if ( touchAmount > 1000){  touchAmount -= 30;  }           
+        if ( touchAmount > 1000){  angularSpeed=0.0001;  touchAmount -= 30;  }           
                     
-        if(touchAmount < 1000 && touchAmount>100){ touchAmount -= 30; }
+        if(touchAmount < 1000 && touchAmount>100){ angularSpeed=0.00005; touchAmount -= 30; }
                     
                     
         if ( mouseamount > 1000){                     
@@ -804,7 +804,7 @@ function backgroundchange(){
 
                     
                     
-    cloudArray.forEach(p=>{ ; p.rotation.z +=(0.0003+ typeSpeed*typeAmount + clickSpeed*clickAmount +angularSpeed*mouseamount*Math.random(0.01,3));});
+    cloudArray.forEach(p=>{ ; p.rotation.z +=( 0.0003+ typeSpeed*typeAmount + clickSpeed*clickAmount +  angularSpeed*touchAmount*Math.random(0.01,3) + angularSpeed*mouseamount*Math.random(0.01,3) );});
                            
              //     console.log(mouseamount);
                     
