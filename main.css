@@ -6,6 +6,7 @@
     bottom: 15px;
     width: 320px;
     right: 0;
+ //   padding-right: 10%;
 
 }
 
@@ -19,7 +20,6 @@
     position: absolute;
    
         text-align: right;
-
 
 }
 
@@ -35,7 +35,6 @@ body{
     box-sizing: border-box;
     font-family: "Montserrat";
     overflow: hidden;
-    
 
 }
 
@@ -102,7 +101,7 @@ body{
     background: white;
     bottom: 0px;
     width: 100%;
-    
+  //  padding-left: 15%;
 }
 
 #demo{
