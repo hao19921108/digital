@@ -19,7 +19,7 @@
         
     <div class="UI">    
       <div class="row">
-  <div id = "leftbox">Your Movement: 0 Pixels</div>
+  <div id = "leftbox">User Data: 0 Pixels</div>
   <div id = "middlebox">Hit the Keys: 0</div>
   <div id = "rightbox">Clicks: 0</div>
 </div>
@@ -362,7 +362,7 @@ setupKeyControls();
             
 
                 
-                var timeout;
+                var timeout, timeout_pad;
 
            
                 const raycaster = new THREE.Raycaster();
@@ -370,27 +370,47 @@ setupKeyControls();
 
 const mouse = new THREE.Vector2();
 
+const dialogues = ["\"I'm craving for your data. Move Your mouse. Clicks. Hit the keys.\"",
+                  '"Keep moving. Keep producing data."','"Keep moving. I need your data."',
+                  '"Move. Mouse. Move"',
+                   '"Move. I know you can do it. Move"','"Then move. Move your mouse."',
+                   '"You can do this. Move your mouse."',
+                   '"I know you can do it. Move the mouse."',
+                   '"As fast as you can. Move your mouse."',
+                   '"Move."']               
+
+    
+
+const dialogues_Pad = ["\"I'm craving for Your Data. Move your finger. Tap. Tap. Tap.\"",
+                  '"Keep moving. Keep producing data. Keep tapping."','"Keep Tapping. I need your data."',
+                  '"Tap. Tap. Tap"',
+                   '"Move your finger . I know you can do it. Move"','"Then move. Move your finger."',
+                   '"You can do this. Move your finger."',
+                   '"I know you can do it. Tap.Tap."',
+                   '"As fast as you can. Move your finger."',
+                   '"Move."',
+                    '"Tap.Tap."']     
+
+
         function onMouseMove(e){
             
-            /*
+        
+               
+         clearTimeout(timeout);
+            clearTimeout(timeout_pad);
+  timeout = setTimeout(function(){  if(!backgroundChangeFlag){userinformation.innerHTML= dialogues[ Math.floor( Math.random() * dialogues.length )] }}, 3500);
+
+
             
-            clearTimeout(timeout);
-  timeout = setTimeout(function(){  if(!backgroundChangeFlag){userinformation.innerHTML= "\"I'm Craving for Your Data. Move Your Mouse. Clicks. Hit the Keys.\"" }}, 3500);
-*/
+            
+            
             
             substract = previousX - e.x;
             verticalSubstract = previousY - e.y;
             
             mouseamount+=Math.abs(substract);
-            mouseamount+=Math.abs(verticalSubstract);
+            mouseamount+=Math.abs(verticalSubstract);       
             
-          
-                
-            
-              
-            
-            
-        //  console.log(mouseamount);
     //        if( substract >0 && direction[0]==0){  direction[0]=1;direction[1]=0; userinformation.innerHTML+= "<br />Mouse moved to the left"+substract +'px'; }
     //        if( substract <0 && direction[1]==0){   direction[0]=0;direction[1]=1;userinformation.innerHTML+= "<br />Your moused moved to the right"+substract+'px'; }
             
@@ -459,6 +479,14 @@ const mouse = new THREE.Vector2();
             
                 function onTouchMove(e){
                     
+            clearTimeout(timeout);
+            clearTimeout(timeout_pad);
+                    
+  timeout_pad = setTimeout(function(){  if(!backgroundChangeFlag){ userinformation.innerHTML= dialogues[ Math.floor( Math.random() * dialogues_Pad.length )] }}, 3500);
+
+
+                    
+                    
                     
                     
             touchSubstract =  event.touches[0].clientX- previousTouchX;
@@ -511,7 +539,7 @@ const mouse = new THREE.Vector2();
                 previousTouchY =  event.touches[0].clientY ;
                     
                     
-             leftbox.innerHTML="Finger Movement: " + Math.floor( touchMovement) + " Pixels";
+             leftbox.innerHTML="User data: " + Math.floor( touchMovement) + " Pixels";
 
                     
                     
@@ -806,25 +834,16 @@ function backgroundchange(){
                     
                   //  timer+=0.05;
                     
-        
-     
-                    
                 if(clickAmount>0){clickAmount-=0.1;}
                 if(typeAmount>0.3){typeAmount-=0.2; typeSpeed=0.0001;}
                 if(typeAmount>50){typeSpeed +=0.000001;} 
-                    
-                    
-                    
-                    
-                    
+                   
                     
                    //             document.getElementById("userdata").scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
-
-                    
+              
                     
             //      console.log(scene.children.length);  
-                    
-                    
+
                     
         if ( mouseamount  > 2.55 ){        mouseamount -= 2.5; }    
     
@@ -837,9 +856,7 @@ function backgroundchange(){
         if ( mouseamount > 1000){                     
                       //  myTween.play();
                          mouseamount -= 20;         }
-                    
-                    
-                    
+                
                     
             if(mouseamount < 1000 && mouseamount>100){ //myTween.pause();
                                           
@@ -900,58 +917,39 @@ function backgroundchange(){
                 
             } 
                         
-                   groupCenter.set( groupX/cloudAmount, groupY/cloudAmount, groupZ/cloudAmount);     
-                        
-                        
+                   groupCenter.set( groupX/cloudAmount, groupY/cloudAmount, groupZ/cloudAmount);                    
                          
      //                    
                      }else{
                          
-     // do something             
+     // do something      
+                 
+                 timeIndex = generateTimeIndex( today.getHours(),  today.getMinutes());
+               scene.background =  skyColor[ timeIndex ];    
                 
                      }
                     
-                    
                     if(mouseamount<3499 && touchAmount < 2500 ){
-                        
-                       
-                           timeIndex = generateTimeIndex( today.getHours(),  today.getMinutes());
-               scene.background =  skyColor[ timeIndex ];
-                        
-                      if(goFlag) { goToNewPlaces()}; 
-                        
+                                               
+                      if(goFlag) { goToNewPlaces()};                       
                     }
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                    
                     
                     if(mouseamount<3500 && mouseamount> 1000 ){
                         
                         angularSpeed = 0.00001;                        
-                        mouseamount -= 50; 
-                        
+                        mouseamount -= 50;        
                       threeSecondFlag =0;
 
-                    }
-                    
-                    
+                    }             
                     
                     if (mouseamount > 5000){ mouseamount -= 100; threeSecondFlag=1;}
                     if ( mouseamount > 10000){        mouseamount -= 350; }  
-                    
-                    
-                    
+                                 
                      if(mouseamount<500){
                         threeSecondFlag = 0;
                     }
-                    
-                
-                    
+                                       
                     if(touchAmount<3500 && touchAmount> 1000){
                         
                         angularSpeed=0.00005;                        
@@ -960,7 +958,6 @@ function backgroundchange(){
 
                     }
                     
-                    
                     if (touchAmount > 5000){ touchAmount -= 100; threeSecondFlag=1;}
                     if ( touchAmount > 10000){        touchAmount -= 350; }  
                     
@@ -968,12 +965,7 @@ function backgroundchange(){
                     
                     
                    // p+=0.02;
-                
-          
 
-         //     console.log(scene.background.color) ;   
-                    
-                    
                     if(prevFlag ==1 && threeSecondFlag ==0){
                           getNewPosition(); goFlag =1; }
                     
