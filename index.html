@@ -523,31 +523,16 @@ const dialogues_Pad = ["\"I'm craving for Your Data. Move your finger. Tap. Tap.
                       userinformation.innerHTML = "Your finger moved up "+ Math.floor( -1* touchVertical) +' Pixels'; 
                 
             }
-                    
-                    
-                    
-                    
-                    
-// var x = ( event.touches[0].clientX / window.innerWidth) *2 -1 ;
-//  var y = - ( event.touches[0].clientY ) * 2 + 1 ;
-                    
-                    
-              //      console.log(  x + ',' + y );
-                    
-  
+                               
                  previousTouchX =  event.touches[0].clientX  ;
                 previousTouchY =  event.touches[0].clientY ;
                     
-                    
              leftbox.innerHTML="User data: " + Math.floor( touchMovement) + " Pixels";
-
-                    
+                
                     
 }
                 
                 
-
-  
             function onTouchEnd(){
          
                 
@@ -558,8 +543,6 @@ const dialogues_Pad = ["\"I'm craving for Your Data. Move your finger. Tap. Tap.
      window.addEventListener('mousemove', ev => {
          
          onMouseMove(ev);
-         
-         
          
                mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
 	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
@@ -573,9 +556,6 @@ const dialogues_Pad = ["\"I'm craving for Your Data. Move your finger. Tap. Tap.
         //console.log(intersects[0].point); 
         cloudCenter = intersects[0].point; }
          
-         
-         
-         
      })
      
      
@@ -583,24 +563,18 @@ const dialogues_Pad = ["\"I'm craving for Your Data. Move your finger. Tap. Tap.
          
          onTouchMove(ev);
          
-         
-     
-         
    	pointer.x = (  event.touches[0].clientX / window.innerWidth ) * 2 - 1;
 	pointer.y= - (  event.touches[0].clientY / window.innerHeight ) * 2 + 1;
             
-                  raycaster.setFromCamera( pointer, camera );
+     raycaster.setFromCamera( pointer, camera );
 
 	// calculate objects intersecting the picking ray
 	const intersects = raycaster.intersectObject( plane );
             let vvvv= new THREE.Vector3(pointer.x,pointer.y)
 	if(intersects[ 0 ]){
-        //console.log(intersects[0].point); 
         cloudCenter = intersects[0].point; }
-         
-         
-         
      })
+     
      
      c.addEventListener('touchstart',ev=>{
          onTouchStart(ev);
@@ -866,7 +840,7 @@ function backgroundchange(){
                     
                     
                     
-                    if( mouseamount > 3500|| touchAmount> 2500){
+                    if( mouseamount > 3500|| touchAmount> 2200){
                          
                          
                          angularSpeed=0.0001;
@@ -929,7 +903,7 @@ function backgroundchange(){
                 
                      }
                     
-                    if(mouseamount<3499 && touchAmount < 2500 ){
+                    if(mouseamount<3499 && touchAmount < 2200 ){
                                                
                       if(goFlag) { goToNewPlaces()};                       
                     }
@@ -950,15 +924,15 @@ function backgroundchange(){
                         threeSecondFlag = 0;
                     }
                                        
-                    if(touchAmount<3500 && touchAmount> 1000){
+                    if(touchAmount< 2200 && touchAmount> 1000){
                         
                         angularSpeed=0.00005;                        
-                        touchAmount -= 50; 
+                        touchAmount -= 40; 
                         threeSecondFlag =0;
 
                     }
                     
-                    if (touchAmount > 5000){ touchAmount -= 100; threeSecondFlag=1;}
+                    if (touchAmount > 4000){ touchAmount -= 70; threeSecondFlag=1;}
                     if ( touchAmount > 10000){        touchAmount -= 350; }  
                     
                    if(threeSecondFlag){ angularSpeed = 0.0002; backgroundchange();}
